@@ -148,56 +148,8 @@
   </header>
 
   <div class="containers">
-    <form id="contactForm" action="#">
-      <div class="input-group">
-        <input
-          type="text"
-          id="nama"
-          name="nama"
-          placeholder="Name"
-          required
-        />
-      </div>
-
-      <div class="input-group">
-        <input
-          type="text"
-          id="no_telephone"
-          name="no_telephone"
-          placeholder="Enter your telephone number"
-          required
-        />
-      </div>
-
-      <div class="input-group">
-        <input
-          type="text"
-          id="alamat"
-          name="alamat"
-          placeholder="Address"
-          required
-        />
-      </div>
-
-      <div class="input-group">
-        <select id="paket_sewa" name="paket_sewa" required>
-          <option value="" disabled selected>Select package</option>
-          <option value="paket1">Package 1</option>
-          <option value="paket2">Package 2</option>
-          <option value="paket3">Package 3</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label for="tanggal_sewa">Rental date</label>
-        <input type="date" id="tanggal_sewa" name="tanggal_sewa" required />
-      </div>
-
-      <div class="button-group">
-        <button type="button" onclick="cancelForm()">CANCEL</button>
-        <button type="button" onclick="showPopup()">NEXT</button>
-      </div>
-    </form>
+    
+  
   </div>
 
   <div class="popup-overlay" id="popupOverlay">
