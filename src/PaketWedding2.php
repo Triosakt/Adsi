@@ -15,11 +15,11 @@ if (!isset($_SESSION['login'])) {
     <title>Dashboard</title>
     <link rel="stylesheet" href="./output.css" />
     <style>
-      /* Custom styles for the sidebar menu */
+      
       .sidebar {
         position: fixed;
         top: 30px;
-        right: -250px; /* Awalnya tersembunyi di sebelah kanan */
+        right: -250px; 
         width: 200px;
         background-color: #6f0b0b;
         padding: 20px;
@@ -27,17 +27,17 @@ if (!isset($_SESSION['login'])) {
         flex-direction: column;
         align-items: center;
         transition: right 0.3s ease;
-        z-index: 1000; /* Pastikan sidebar berada di atas elemen lainnya */
-        border-top-left-radius: 50px; /* Radius sudut kanan bagian atas */
-        border-bottom-left-radius: 50px; /* Radius sudut kanan bagian bawah */
+        z-index: 1000; 
+        border-top-left-radius: 50px; 
+        border-bottom-left-radius: 50px; 
       }
       .sidebar a:last-child {
-        margin-top: 100px; /* Dorong item terakhir ke bawah */
-        margin-bottom: 10px; /* Hilangkan margin bawah untuk item terakhir */
+        margin-top: 100px; 
+        margin-bottom: 10px; 
       }
 
       .sidebar.active {
-        right: 0; /* Tampilkan sidebar */
+        right: 0; 
       }
 
       .sidebar a {
@@ -60,7 +60,7 @@ if (!isset($_SESSION['login'])) {
         cursor: pointer;
       }
       .overlay {
-        display: none; /* Initially hidden */
+        display: none; 
         position: fixed;
         top: 0;
         left: 0;
@@ -71,14 +71,14 @@ if (!isset($_SESSION['login'])) {
           0,
           0,
           0.5
-        ); /* Semi-transparent black overlay */
-        z-index: 999; /* Ensure overlay is above other elements but below sidebar */
+        ); 
+        z-index: 999; 
       }
       .overlay.active {
-        display: block; /* Show overlay when active */
+        display: block; 
       }
       body.body-lock-scroll {
-        overflow: hidden; /* Lock scroll when sidebar is active */
+        overflow: hidden;
       }
     </style>
   </head>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['login'])) {
     <div class="absolute top-0 left-1/2 w-full text-white -translate-x-1/2 z-50">
       <?php include "layout/header.php" ?>
     </div>
-    <!-- Sidebar -->
+    
     <div class="sidebar" id="sidebar">
       <a href="#">Profile</a>
       <a href="Setting.php">Setting</a>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['login'])) {
     </div>
     <div class="overlay" id="overlay"></div>
     <section>
-      <!-- Slider -->
+      
       <div
         data-hs-carousel='{
     "loadingClasses": "opacity-0",

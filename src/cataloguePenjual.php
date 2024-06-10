@@ -121,7 +121,7 @@ if (!isset($_SESSION['login'])) {
       .sidebar {
       position: fixed;
       top: 30px;
-      right: -250px; /* Awalnya tersembunyi di sebelah kanan */
+      right: -250px; 
       width: 200px;
       background-color: #6F0B0B;
       padding: 20px;

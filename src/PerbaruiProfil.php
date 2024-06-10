@@ -95,15 +95,15 @@ if(isset($_POST['submit'])) {
         .profile-section {
            
             border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            
+            padding: 20px;            
         }
 
         .header {
             background-color: #b8a6a5;
             border-radius: 10px 10px 10px 10px;
             text-align: center;
+            width: 500px;
+            height: 50px;
         }
 
         .header h1 {
@@ -111,11 +111,17 @@ if(isset($_POST['submit'])) {
             color: white;
             font-size: 30px;
             font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
 
         form {
             display: flex;
             flex-direction: column;
+            box-sizing: 10px;
+            margin-left: 40px;
+            margin-right: 40px;
+            
         }
 
         label {
@@ -174,11 +180,13 @@ if(isset($_POST['submit'])) {
 <body>
     <section>
         <div class="mt-10 pb-20 flex justify-center gap-x-10 px-12">
-    <div class=" bg-primary rounded-3xl px-4">
-        <div class="profile-section">
-            <div class="header">
+            
+    <div class="bg-primary rounded-3xl px-4">
+    <div class="header">
                 <h1>PROFILE</h1>
             </div>
+                
+        <div class="profile-section">
             <?php
             if(isset($_GET['success'])) {
                 echo "<p style='color:green;'>Profile updated successfully!</p>";
@@ -199,20 +207,18 @@ if(isset($_POST['submit'])) {
 
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address" value="<?php echo htmlspecialchars(isset($user['alamat']) ? $user['alamat'] : ''); ?>">
-                <div class="buttons">
-                    <button type="submit" name="submit" class="button save">Save</button>
-                    
+                <div class="flex flex-col items-center">
+                <div class="profile-picture">
+                    <img src="./asset/logo2.png" alt="Profile Picture">
                 </div>
+                 <div class="buttons">
+                    <button type="submit" name="submit" class="button save">Save</button>
+                    <button type="button" class="button cancel" onclick="window.location.href='index.php'">Cancel</button>
+                </div>
+
             </form>
         </div>
     </div>
-    <div class="mt-10 mb-10 px-4 py-16 flex flex-col items-center">
-                <div class="profile-picture">
-                    <img src="./asset/icons/owner.jpg" alt="Profile Picture">
-                </div>
-                 <div class="buttons">
-                    <button type="button" class="button cancel" onclick="window.location.href='index.php'">Cancel</button>
-                </div>
         
         </section>
        

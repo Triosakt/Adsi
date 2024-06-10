@@ -185,8 +185,8 @@ if (!isset($_SESSION['login'])) {
           </span>
         </button>
       </div>
-      <!-- End Slider -->
 
+      
       <div class="mt-10 pb-20 flex justify-center gap-x-10 px-12">
         <div class="w-1/2 bg-primary rounded-3xl px-4 py-16">
           <h1 class="text-white font-bold text-center text-2xl mb-5">

@@ -117,7 +117,7 @@
   </head>
   <body class="bg-nav">
     <div class="absolute top-0 left-1/2 w-full text-white -translate-x-1/2 z-50"></div>
-    <!-- Sidebar -->
+    
     <div class="sidebar" id="sidebar">
       <a href="#">Profile</a>
       <a href="Setting.php">Setting</a>

@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        # code...
+        
         header("Location: cataloguePenjual.php");
         exit();
     } else {

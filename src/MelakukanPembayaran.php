@@ -98,23 +98,23 @@ if (!isset($_SESSION['login'])) {
             cursor: pointer;
         }
         .payment-info .upload-section button i {
-            margin-right: 8px; /* Add some space between icon and text */
+            margin-right: 8px; 
         }
         .popup {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            left: 50%; /* Center the popup */
-            top: 50%; /* Center the popup */
+            display: none; 
+            position: fixed; 
+            left: 50%; 
+            top: 50%; 
             transform: translate(-50%, -50%);
             background-color: #FEEEC5;
             color: #6F0B0B;
             padding: 60px;
             border-radius: 20px;
             font-style: italic;
-            font-weight: bold; /* Make text bold */
-            z-index: 1001; /* Ensure popup is above other elements */
+            font-weight: bold;
+            z-index: 1001; 
             text-align: center;
-            font-size: 24px; /* Larger text size */
+            font-size: 24px; 
         }
     </style>
 </head>
@@ -158,7 +158,7 @@ if (!isset($_SESSION['login'])) {
       .sidebar {
       position: fixed;
       top: 30px;
-      right: -250px; /* Initially hidden on the right */
+      right: -250px; 
       width: 200px;
       background-color: #6F0B0B;
       padding: 20px;
@@ -166,17 +166,17 @@ if (!isset($_SESSION['login'])) {
       flex-direction: column;
       align-items: center;
       transition: right 0.3s ease;
-      z-index: 1000; /* Ensure sidebar is above other elements */
-      border-top-left-radius: 50px; /* Top-right corner radius */
-      border-bottom-left-radius: 50px; /* Bottom-right corner radius */
+      z-index: 1000; 
+      border-top-left-radius: 50px; 
+      border-bottom-left-radius: 50px; 
     }
     .sidebar a:last-child {
-      margin-top: 100px; /* Push the last item to the bottom */
-      margin-bottom: 10px; /* Remove bottom margin for the last item */
+      margin-top: 100px;
+      margin-bottom: 10px; 
     }
 
     .sidebar.active {
-      right: 0; /* Show sidebar */
+      right: 0; 
     }
 
     .sidebar a {
@@ -205,14 +205,14 @@ if (!isset($_SESSION['login'])) {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-      z-index: 999; /* Ensure overlay is above other elements but below sidebar */
+      background-color: rgba(0, 0, 0, 0.5); 
+      z-index: 999; 
     }
     .overlay.active {
-      display: block; /* Show overlay when active */
+      display: block; 
     }
     body.body-lock-scroll {
-      overflow: hidden; /* Lock scroll when sidebar is active */
+      overflow: hidden; 
     }
       .text-justify {
       text-align: justify;
@@ -241,13 +241,13 @@ if (!isset($_SESSION['login'])) {
         document.body.classList.remove('body-lock-scroll');
       });
 
-      // Show popup notification
+      
       document.getElementById('send-btn').addEventListener('click', () => {
         const popup = document.getElementById('popup');
         popup.style.display = 'block';
         setTimeout(() => {
           popup.style.display = 'none';
-        }, 3000); // Hide after 3 seconds
+        }, 3000);
       });
     </script>
 

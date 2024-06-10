@@ -221,7 +221,7 @@
     }
 
     function submitForm() {
-      // Optionally, you can gather form data here and send it via POST or GET
+      
       window.location.href = 'Melakukanpembayaran.php';
     }
 
