@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f7e3b5
+            background-color: #FFF3CD
         }
 
         section {
@@ -29,8 +29,8 @@
         }
 
         .button {
-            background-color: #8d8d8d;
-            color: white;
+            background-color: #FFF3CD;
+            color: black;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
@@ -49,7 +49,7 @@
             border-radius: 50%; 
         }
         .bg-primary{
-            background-color: #964b3a;
+            background-color: #6F0B0B;
         }
     </style>
 </head>
