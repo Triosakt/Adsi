@@ -185,7 +185,7 @@
           <option value="" disabled selected>Select package</option>
           <option value="paket1">Package 1</option>
           <option value="paket2">Package 2</option>
-          <option value="paket2">Package 2</option>
+          
         </select>
       </div>
 
