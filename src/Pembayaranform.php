@@ -149,7 +149,7 @@
   </header>
 
   <div class="containers">
-    <form id="contactForm" action="#">
+    <form id="contactForm" action="PembayaranInsert.php" method="POST">
       <div class="input-group">
         <input
           type="text"
