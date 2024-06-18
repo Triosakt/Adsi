@@ -4,251 +4,140 @@ if (!isset($_SESSION['login'])) {
   header("Location: logins.php");
   exit();
 }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "pendaftaranakun";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM catering_packages";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="./output.css" />
-    <style>
-      /* Custom styles for the sidebar menu */
-      .sidebar {
-        position: fixed;
-        top: 30px;
-        right: -250px; /* Awalnya tersembunyi di sebelah kanan */
-        width: 200px;
-        background-color: #6f0b0b;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: right 0.3s ease;
-        z-index: 1000; /* Pastikan sidebar berada di atas elemen lainnya */
-        border-top-left-radius: 50px; /* Radius sudut kanan bagian atas */
-        border-bottom-left-radius: 50px; /* Radius sudut kanan bagian bawah */
-      }
-      .sidebar a:last-child {
-        margin-top: 100px; /* Dorong item terakhir ke bawah */
-        margin-bottom: 10px; /* Hilangkan margin bawah untuk item terakhir */
-      }
 
-      .sidebar.active {
-        right: 0; /* Tampilkan sidebar */
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./output.css" />
+  <style>
+    body {
+      background-color: #800000;
+      color: #000;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-      .sidebar a {
-        display: block;
-        width: 150px;
-        height: 50px;
-        padding: 15px;
-        margin-top: 10px;
-        margin-bottom: 0;
-        background-color: #f5deb3;
-        color: #6f0b0b;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 20px;
-        font-weight: bold;
-      }
-      .toggle-btn {
-        top: 20px;
-        right: 20px;
-        cursor: pointer;
-      }
-      .overlay {
-        display: none; /* Initially hidden */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.5
-        ); /* Semi-transparent black overlay */
-        z-index: 999; /* Ensure overlay is above other elements but below sidebar */
-      }
-      .overlay.active {
-        display: block; /* Show overlay when active */
-      }
-      body.body-lock-scroll {
-        overflow: hidden; /* Lock scroll when sidebar is active */
-      }
-    </style>
-  </head>
-  <body class="bg-nav">
-    <div class="absolute top-0 left-1/2 w-full text-white -translate-x-1/2 z-50">
-      <?php include "layout/header.php" ?>
-    </div>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-      <a href="#">Profile</a>
-      <a href="Setting.php">Setting</a>
-      <a href="pemilik.php">Start Selling</a>
-      <a href="logout.php">Log Out</a>
-    </div>
-    <div class="overlay" id="overlay"></div>
+    .container {
+      text-align: center;
+    }
+
+    .form-container {
+      background-color: #f5deb3;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-container label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    .form-container input[type="text"],
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      background-color: #800000;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #a52a2a;
+    }
+
+    #add-package-btn {
+      background-color: #800000;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+      /* Centers the button */
+    }
+
+    #add-package-btn:hover {
+      background-color: #a52a2a;
+    }
+  </style>
+</head>
+
+<body class="bg-nav">
+  <div class="absolute top-0 left-1/2 w-full text-black -translate-x-1/2 z-50">
+    <?php include "layout/header.php"; ?>
     <section>
-      <!-- Slider -->
-      <div
-        data-hs-carousel='{
-    "loadingClasses": "opacity-0",
-    "isAutoPlay": true
-  }'
-        class="relative"
-      >
-        <div class="hs-carousel relative w-full min-h-[20rem] rounded-lg">
-          <div
-            class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0"
-          >
-            <div class="hs-carousel-slide">
-              <div
-                class="flex items-end h-full bg-gray-100 p-6 bg-no-repeat bg-cover bg-center dark:bg-items1"
-                style="background-image: url(./asset/carousel/CT1.jpg)"
-              >
-                >
-              </div>
-            </div>
-            <div class="hs-carousel-slide">
-              <div
-                class="flex justify-center h-full bg-gray-200 bg-no-repeat bg-cover bg-bottom bg-fixed p-6 dark:bg-neutral-800"
-                style="background-image: url(./asset/carousel/CT2.jpg)"
-              >
-                >
-              </div>
-            </div>
-
-            <div class="hs-carousel-slide">
-              <div
-                class="flex justify-center h-full bg-gray-200 bg-no-repeat bg-cover bg-center bg-fixed p-6 dark:bg-neutral-800"
-                style="background-image: url(./asset/carousel/CT3.jpg)"
-              > 
-                >
-              </div>
-            </div>
-
-            <div class="hs-carousel-slide">
-              <div
-                class="flex justify-center h-full bg-no-repeat bg-cover bg-center bg-gray-300 p-6 dark:bg-neutral-700"
-                style="background-image: url(./asset/carousel/CT4.jpg)"
-              ></div>
-            </div>
+      <div class="mt-10 pb-20 flex justify-center gap-x-10 px-12" id="package-container">
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <div class="w-1/2 bg-primary rounded-3xl px-4 py-16"
+            onclick="location.href='package_detail.php?id=<?php echo $row['id']; ?>';" style="cursor: pointer;">
+            <h1 class="text-white font-bold text-center text-2xl mb-5"><?php echo $row['name']; ?></h1>
+            <img class="mx-auto" src="./asset/icons/PKT<?php echo $row['id']; ?>.png" alt="">
+            <p class="text-white text-center mt-10 max-w-[26.75rem] text-xl mx-auto">GET</p>
           </div>
-          <p
-            class="absolute z-50 text-white top-52 left-1/2 text-5xl font-bold -translate-x-1/2"
-          >
-          CATERING PACKAGES
-          </p>
-        </div>
-
-        <button
-          type="button"
-          class="hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 rounded-s-lg dark:text-white dark:hover:bg-white/10"
-        >
-          <span class="text-2xl" aria-hidden="true">
-            <svg
-              class="flex-shrink-0 size-5"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="m15 18-6-6 6-6"></path>
-            </svg>
-          </span>
-          <span class="sr-only">Previous</span>
-        </button>
-        <button
-          type="button"
-          class="hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/10 rounded-e-lg dark:text-white dark:hover:bg-white/10"
-        >
-          <span class="sr-only">Next</span>
-          <span class="text-2xl" aria-hidden="true">
-            <svg
-              class="flex-shrink-0 size-5"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="m9 18 6-6-6-6"></path>
-            </svg>
-          </span>
-        </button>
+        <?php endwhile; ?>
       </div>
-      <!-- End Slider -->
-
-      <div class="mt-10 pb-20 flex justify-center gap-x-10 px-12">
-      <div class="w-1/2 bg-primary rounded-3xl px-4 py-16" onclick="location.href='cat1.php';" style="cursor: pointer;">
-          <h1 class="text-white font-bold text-center text-2xl mb-5">
-          Catering package I
-          </h1>
-          <img
-            class="mx-auto"
-            src="./asset/icons/PKT1.png"
-            alt=""
-          />
-
-          <p
-            class="text-white text-center mt-10 max-w-[26.75rem] text-xl mx-auto"
-          >
-            GET
-          </p>
-        </div>
-        <div class="w-1/2 bg-primary rounded-3xl px-4 py-16" onclick="location.href='cat2.php';" style="cursor: pointer;">>
-          <h1 class="text-white font-bold text-center text-2xl mb-5">
-            Catering package II
-          </h1>
-          <img
-            class="mx-auto"
-            src="./asset/icons/PKT2.png"
-            alt=""
-          />
-
-          <p
-            class="text-white text-center mt-10 max-w-[26.75rem] text-xl mx-auto"
-          >
-            GET
-          </p>
-        </div>
+      <div id="new-package-form" class="form-container" style="display: none;">
+        <label for="new-name">Name:</label>
+        <input type="text" id="new-name" name="new-name">
+        <label for="new-description">Description:</label>
+        <textarea id="new-description" name="new-description"></textarea>
+        <label for="new-price">Price:</label>
+        <input type="text" id="new-price" name="new-price">
+        <button id="save-package-btn">Save</button>
       </div>
     </section>
-
     <?php include "layout/footer.php"; ?>
+    <script src="asset/js/packages.js"></script>
+  </div>
 
-    <script src="./../node_modules/preline/dist/preline.js"></script>
-    <script>
-      const toggleBtn = document.getElementById("toggle-btn");
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
 
-      toggleBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-        overlay.classList.toggle("active");
-        document.body.classList.toggle("body-lock-scroll");
-      });
 
-      overlay.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-        document.body.classList.remove("body-lock-scroll");
-      });
-    </script>
-  </body>
+
+
+</body>
+
 </html>
+
+<?php
+$conn->close();
+?>

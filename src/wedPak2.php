@@ -1,18 +1,19 @@
 <?php
 session_start();
 if (!isset($_SESSION['login'])) {
-  header("Location: logins.php");
-  exit();
+    header("Location: logins.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Paket Catering I - EventGear Alat Pesta</title>
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +21,7 @@ if (!isset($_SESSION['login'])) {
             padding: 0;
             background-color: #FFF3CD;
         }
+
         header {
             display: flex;
             align-items: center;
@@ -28,34 +30,41 @@ if (!isset($_SESSION['login'])) {
             color: white;
             padding: 20px 50px;
         }
+
         header .logo-container {
             display: flex;
             align-items: center;
         }
+
         header img {
             width: 50px;
             vertical-align: middle;
         }
+
         header h1 {
             margin: 0 0 0 10px;
             font-size: 18px;
         }
+
         header .profile {
             display: flex;
             align-items: center;
         }
+
         header .profile img {
             border-radius: 50%;
             height: 40px;
             width: 40px;
             margin-left: 10px;
         }
+
         nav {
             margin-right: 70%;
             display: flex;
             justify-content: center;
             background-color: #FFF3CD;
         }
+
         nav a {
             color: rgb(0, 0, 0);
             padding: 14px 20px;
@@ -63,9 +72,11 @@ if (!isset($_SESSION['login'])) {
             text-align: center;
             font-weight: bold;
         }
+
         nav a:hover {
             color: #730000;
         }
+
         .container {
             background-color: #730000;
             padding: 20px;
@@ -83,24 +94,29 @@ if (!isset($_SESSION['login'])) {
             max-width: 600px;
             max-height: 100px;
         }
+
         .package-header img {
             width: 200px;
             border-radius: 8px;
             margin-left: -15px;
         }
+
         .package-details {
             margin-left: 20px;
             color: #730000;
         }
+
         .package-details h2 {
             margin: 0;
             font-size: 24px;
             font-weight: bold;
         }
+
         .package-details p {
             margin: 10px 0;
             font-size: 18px;
         }
+
         .order-button {
             display: inline-block;
             background-color: #730000;
@@ -112,26 +128,32 @@ if (!isset($_SESSION['login'])) {
             font-weight: bold;
             margin-top: 10px;
         }
-        .description, .include {
+
+        .description,
+        .include {
             background-color: #FFF3CD;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+
         .include ul {
             list-style-type: none;
             padding: 0;
         }
+
         .include li {
             margin: 10px 0;
         }
+
         .include li span {
             float: right;
             font-weight: bold;
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="logo-container">
@@ -139,7 +161,7 @@ if (!isset($_SESSION['login'])) {
             <h1>Make Your Party Unforgettable with the <br>Best Selection!</h1>
         </div>
         <div class="profile">
-        <p><?php echo "Hi, " . $_SESSION['login']['nama']; ?></p>
+            <p><?php echo "Hi, " . $_SESSION['login']['nama']; ?></p>
             <a href="#"><img src="./asset/icons/owner.jpg" alt="Profile Picture"></a>
         </div>
     </header>
@@ -154,9 +176,7 @@ if (!isset($_SESSION['login'])) {
             <div class="package-details">
                 <h2>WEDDING PACKAGE II</h2>
                 <p>Rp. 50.000.000</p>
-                <a href="#" class="order-button"
-                onclick="window.location.href = 'Pembayaranform.php';"
-                >Order</a>
+                <a href="#" class="order-button" onclick="window.location.href = 'Pembayaranform.php';">Order</a>
             </div>
         </div>
         <div class="description">
@@ -179,4 +199,5 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 </body>
+
 </html>
