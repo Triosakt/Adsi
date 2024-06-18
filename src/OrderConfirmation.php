@@ -109,107 +109,20 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Order Confirmation</h1>
-    </div>
+  <header>
+    <h2>Order Confirmation</h2>
+  </header>
 
-    <?php
-    session_start();
-    if (isset($_SESSION['message'])) {
-      echo "<div class='message'>" . $_SESSION['message'] . "</div>";
-      unset($_SESSION['message']);
-    }
-    ?>
+  <div class="containers">
+    
+  
+  </div>
 
-    <table class="order-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Telephone</th>
-          <th>Address</th>
-          <th>Packages</th>
-          <th>Rental Date</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        // Koneksi ke database
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "pendaftaranakun";
-
-        // Membuat koneksi
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Mengecek koneksi
-        if ($conn->connect_error) {
-          die("Koneksi gagal: " . $conn->connect_error);
-        }
-
-        // Mengambil data dari tabel
-        $sql = "SELECT id, name, phone_number, address, package, rental_date, status FROM rentals";
-        $result = $conn->query($sql);
-
-        if (!$result) {
-          die("Query gagal: " . $conn->error);
-        }
-
-        if ($result->num_rows > 0) {
-          // Output data setiap baris
-          while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-                        <td>" . $row["name"] . "</td>
-                        <td>" . $row["phone_number"] . "</td>
-                        <td>" . $row["address"] . "</td>
-                        <td>" . $row["package"] . "</td>
-                        <td>" . $row["rental_date"] . "</td>
-                        <td>
-                          <form action='update_status.php' method='POST'>
-                            <input type='hidden' name='id' value='" . $row["id"] . "'>
-                            <select name='status' onchange='this.form.submit()'>
-                              <option value='Diterima'" . ($row["status"] == 'Diterima' ? " selected" : "") . ">Diterima</option>
-                              <option value='Tidak Diterima'" . ($row["status"] == 'Tidak Diterima' ? " selected" : "") . ">Tidak Diterima</option>
-                            </select>
-                          </form>
-                        </td>
-                      </tr>";
-          }
-        } else {
-          echo "<tr><td colspan='6'>No orders found</td></tr>";
-        }
-
-        $conn->close();
-        ?>
-      </tbody>
-    </table>
-
-    <button class="back-button" onclick="window.history.back();">BACK</button>
-
-    <div class="footer">
-      <div class="contact-info">
-        <h2>EventGear Contact</h2>
-        <p>📞 087899248741</p>
-        <p>📞 081368982664 | 082269688481</p>
-        <p>📱 0895640121372</p>
-        <p>✉️ eventgear.alatpesta@gmail.com</p>
-      </div>
-      <div class="address">
-        <h2>Address</h2>
-        <p>Kemiling Permai, Kec. Kemiling, Kota Bandar Lampung, Lampung 35151</p>
-      </div>
-      <div class="social-media">
-        <h2>Join With Us</h2>
-        <p>
-          <a href="#">Facebook</a> |
-          <a href="#">Twitter</a> |
-          <a href="#">Instagram</a> |
-          <a href="#">YouTube</a> |
-          <a href="#">WhatsApp</a>
-        </p>
-      </div>
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <h2>Is your data correct?</h2>
+      <button onclick="submitForm()">Yes</button>
+      <button onclick="hidePopup()">No</button>
     </div>
   </div>
 </body>
